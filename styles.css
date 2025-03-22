@@ -1,0 +1,76 @@
+/* Reinicio básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo de la página */
+body {
+  background: #2f2f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor principal con perspectiva 3D */
+.wrapper {
+  position: relative;
+  width: 288px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  perspective: 1000px;
+}
+
+/* Base (panel trasero que se convierte en piso) */
+.base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 2rem;
+  box-shadow: inset 10px 10px 10px #999, inset -10px -10px 10px #fff;
+  transform-origin: bottom center;
+  transition: transform 1s, box-shadow 1s;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Lata */
+.can {
+  position: absolute;
+  width: 50%;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 1s;
+  z-index: 2;
+  backface-visibility: hidden;
+}
+
+/* Reflejo de la lata */
+.reflection {
+  position: absolute;
+  width: 50%;
+  transform: scaleY(-1);
+  opacity: 0.3;
+  filter: blur(5px);
+  pointer-events: none;
+  bottom: 5%;
+}
+
+/* Efecto hover */
+.wrapper:hover .base {
+  transform: translateZ(100px) rotateX(75deg);
+  box-shadow: 10px 10px 10px #999;
+}
+
+.wrapper:hover .can {
+  transform: translateX(-50%) translateY(-15px);
+}
